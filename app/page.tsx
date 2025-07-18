@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { MessageCircle, Zap, Clock, Users, CheckCircle } from "lucide-react"
+import { TypeAnimation } from "react-type-animation"
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -160,47 +161,83 @@ export default function LandingPage() {
                   <MessageCircle className="w-5 h-5 text-green-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Atendimento | minhaempresa.ai   </h4>
+                  <h4 className="font-semibold text-white">Atendimento | minhaempresa.ai </h4>
                   <p className="text-xs text-green-100">online</p>
                 </div>
               </div>
 
-              <div className="bg-gray-100 p-4 space-y-3 h-80 overflow-y-auto">
-                <div className="flex justify-start">
-                  <div className="bg-white rounded-lg p-3 max-w-xs shadow">
-                    <p className="text-gray-800 text-sm">Olá! Como posso ajudá-lo hoje?</p>
-                  </div>
-                </div>
+              <TypeAnimation
+                sequence={[
+                  // Primeira mensagem do bot
+                  () => {
+                    const botMessage = document.createElement("div")
+                    botMessage.className = "flex justify-start"
+                    botMessage.innerHTML = `
+                      <div class="bg-white rounded-lg p-3 max-w-xs shadow">
+                        <p class="text-gray-800 text-sm">Olá! Como posso ajudá-lo hoje?</p>
+                      </div>
+                    `
+                    document.querySelector(".chat-container")?.appendChild(botMessage)
+                  },
+                  2000, // Pausa de 2 segundos
 
-                <div className="flex justify-end">
-                  <div className="bg-green-500 rounded-lg p-3 max-w-xs">
-                    <p className="text-white text-sm">Gostaria de saber sobre seus serviços</p>
-                  </div>
-                </div>
+                  // Mensagem do usuário
+                  () => {
+                    const userMessage = document.createElement("div")
+                    userMessage.className = "flex justify-end"
+                    userMessage.innerHTML = `
+                      <div class="bg-green-500 rounded-lg p-3 max-w-xs">
+                        <p class="text-white text-sm">Gostaria de saber sobre seus serviços</p>
+                      </div>
+                    `
+                    document.querySelector(".chat-container")?.appendChild(userMessage)
+                  },
+                  1500, // Pausa de 1.5 segundos
 
-                <div className="flex justify-start">
-                  <div className="bg-white rounded-lg p-3 max-w-xs shadow">
-                    <p className="text-gray-800 text-sm">
-                      Perfeito! Oferecemos soluções de automação com IA para vendas e atendimento. Posso agendar uma
-                      demonstração gratuita para você?
-                    </p>
-                  </div>
-                </div>
+                  // Segunda mensagem do bot
+                  () => {
+                    const botMessage = document.createElement("div")
+                    botMessage.className = "flex justify-start"
+                    botMessage.innerHTML = `
+                      <div class="bg-white rounded-lg p-3 max-w-xs shadow">
+                        <p class="text-gray-800 text-sm">Perfeito! Oferecemos soluções de automação com IA para vendas e atendimento. Posso agendar uma demonstração gratuita para você?</p>
+                      </div>
+                    `
+                    document.querySelector(".chat-container")?.appendChild(botMessage)
+                  },
+                  2500, // Pausa de 2.5 segundos
 
-                <div className="flex justify-end">
-                  <div className="bg-green-500 rounded-lg p-3 max-w-xs">
-                    <p className="text-white text-sm">Sim, tenho interesse!</p>
-                  </div>
-                </div>
+                  // Resposta do usuário
+                  () => {
+                    const userMessage = document.createElement("div")
+                    userMessage.className = "flex justify-end"
+                    userMessage.innerHTML = `
+                      <div class="bg-green-500 rounded-lg p-3 max-w-xs">
+                        <p class="text-white text-sm">Sim, tenho interesse!</p>
+                      </div>
+                    `
+                    document.querySelector(".chat-container")?.appendChild(userMessage)
+                  },
+                  1500, // Pausa de 1.5 segundos
 
-                <div className="flex justify-start">
-                  <div className="bg-white rounded-lg p-3 max-w-xs shadow">
-                    <p className="text-gray-800 text-sm">
-                      Ótimo! Qual o melhor horário para você? Temos disponibilidade hoje às 14h ou amanhã às 10h.
-                    </p>
-                  </div>
-                </div>
-              </div>
+                  // Mensagem final do bot
+                  () => {
+                    const botMessage = document.createElement("div")
+                    botMessage.className = "flex justify-start"
+                    botMessage.innerHTML = `
+                      <div class="bg-white rounded-lg p-3 max-w-xs shadow">
+                        <p class="text-gray-800 text-sm">Ótimo! Qual o melhor horário para você? Temos disponibilidade hoje às 14h ou amanhã às 10h.</p>
+                      </div>
+                    `
+                    document.querySelector(".chat-container")?.appendChild(botMessage)
+                  },
+                  3000, // Pausa final
+                ]}
+                wrapper="div"
+                className="chat-container space-y-3"
+                repeat={Number.POSITIVE_INFINITY}
+                style={{ minHeight: "100%" }}
+              />
             </div>
           </div>
         </div>
