@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { MessageCircle, Zap, Clock, Users, CheckCircle } from "lucide-react"
 import { TypeAnimation } from "react-type-animation"
+import { motion } from "framer-motion"
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -38,12 +39,20 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 relative overflow-hidden">
+      <motion.section
+        className="pt-24 pb-16 relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             {/* Left Content */}
-            <div
+            <motion.div
               className={`space-y-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
               {/* Animated Neural Network Background */}
               <div className="absolute inset-0 opacity-20">
@@ -97,11 +106,15 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Content - Founder Image */}
-            <div
+            <motion.div
               className={`relative transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              whileHover={{ scale: 1.02 }}
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-transparent to-transparent z-10 rounded-sm opacity-100"></div>
@@ -112,49 +125,98 @@ export default function LandingPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent"></div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* What is an AI Agent Section */}
-      <section id="solucoes" className="py-20 bg-gray-800/50">
+      <motion.section
+        id="solucoes"
+        className="py-20 bg-gray-800/50"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-4xl font-bold mb-6">O que é um Agente de I.A.?</h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Nossos agentes inteligentes trabalham 24/7 para automatizar vendas e atendimento com precisão humana
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <Card className="bg-gray-800 border-gray-700 hover:border-blue-500 transition-colors">
-              <CardContent className="p-6 text-center">
-                <Zap className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-3 text-white">Resposta Instantânea</h3>
-                <p className="text-gray-300">Atende clientes imediatamente, sem tempo de espera</p>
-              </CardContent>
-            </Card>
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Card className="bg-gray-800 border-gray-700 hover:border-blue-500 transition-colors">
+                <CardContent className="p-6 text-center">
+                  <Zap className="w-12 h-12 text-blue-500 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-3 text-white">Resposta Instantânea</h3>
+                  <p className="text-gray-300">Atende clientes imediatamente, sem tempo de espera</p>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-            <Card className="bg-gray-800 border-gray-700 hover:border-purple-500 transition-colors">
-              <CardContent className="p-6 text-center">
-                <Clock className="w-12 h-12 text-purple-500 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-3 text-white">Disponível 24/7</h3>
-                <p className="text-gray-300">Nunca para de trabalhar, mesmo nos finais de semana</p>
-              </CardContent>
-            </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Card className="bg-gray-800 border-gray-700 hover:border-purple-500 transition-colors">
+                <CardContent className="p-6 text-center">
+                  <Clock className="w-12 h-12 text-purple-500 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-3 text-white">Disponível 24/7</h3>
+                  <p className="text-gray-300">Nunca para de trabalhar, mesmo nos finais de semana</p>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-            <Card className="bg-gray-800 border-gray-700 hover:border-blue-500 transition-colors">
-              <CardContent className="p-6 text-center">
-                <Users className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-3 text-white">Atendimento Personalizado</h3>
-                <p className="text-gray-300">Conversa natural e adaptada para cada cliente</p>
-              </CardContent>
-            </Card>
-          </div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Card className="bg-gray-800 border-gray-700 hover:border-blue-500 transition-colors">
+                <CardContent className="p-6 text-center">
+                  <Users className="w-12 h-12 text-blue-500 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-3 text-white">Atendimento Personalizado</h3>
+                  <p className="text-gray-300">Conversa natural e adaptada para cada cliente</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
 
           {/* WhatsApp Mockup */}
-          <div className="max-w-md mx-auto">
+          <motion.div
+            className="max-w-md mx-auto"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
             <div className="bg-gray-800 rounded-3xl p-4 shadow-2xl">
               <div className="rounded-t-2xl p-4 flex space-x-3 items-center">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center bg-transparent">
@@ -245,12 +307,18 @@ export default function LandingPage() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 border-t border-gray-800 py-12">
+      <motion.footer
+        className="bg-gray-900 border-t border-gray-800 py-12"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
@@ -261,17 +329,22 @@ export default function LandingPage() {
             </p>
           </div>
         </div>
-      </footer>
+      </motion.footer>
       {/* WhatsApp Floating Button */}
-      <a
+      <motion.a
         href="https://wa.me/554388637416?text=Desejo%20saber%20mais%20como%20utilizo%20um%20agente%20de%20ia%20no%20meu%20negócio"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse hover:animate-none"
+        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         aria-label="Falar no WhatsApp"
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ duration: 0.8, delay: 1.5 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       >
         <MessageCircle className="w-6 h-6" />
-      </a>
+      </motion.a>
     </div>
   )
 }
