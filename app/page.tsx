@@ -166,78 +166,84 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <TypeAnimation
-                sequence={[
-                  // Primeira mensagem do bot
-                  () => {
-                    const botMessage = document.createElement("div")
-                    botMessage.className = "flex justify-start"
-                    botMessage.innerHTML = `
-                      <div class="bg-white rounded-lg p-3 max-w-xs shadow">
-                        <p class="text-gray-800 text-sm">Olá! Como posso ajudá-lo hoje?</p>
-                      </div>
-                    `
-                    document.querySelector(".chat-container")?.appendChild(botMessage)
-                  },
-                  2000, // Pausa de 2 segundos
+              <div className="bg-gray-100 p-4 space-y-3 h-80 overflow-y-auto">
+                <TypeAnimation
+                  sequence={[
+                    // Primeira mensagem do bot
+                    () => {
+                      // Limpa o container antes de começar
+                      const container = document.querySelector(".chat-container")
+                      if (container) container.innerHTML = ""
 
-                  // Mensagem do usuário
-                  () => {
-                    const userMessage = document.createElement("div")
-                    userMessage.className = "flex justify-end"
-                    userMessage.innerHTML = `
-                      <div class="bg-green-500 rounded-lg p-3 max-w-xs">
-                        <p class="text-white text-sm">Gostaria de saber sobre seus serviços</p>
-                      </div>
-                    `
-                    document.querySelector(".chat-container")?.appendChild(userMessage)
-                  },
-                  1500, // Pausa de 1.5 segundos
+                      const botMessage = document.createElement("div")
+                      botMessage.className = "flex justify-start"
+                      botMessage.innerHTML = `
+                        <div class="bg-white rounded-lg p-3 max-w-xs shadow">
+                          <p class="text-gray-800 text-sm">Olá! Como posso ajudá-lo hoje?</p>
+                        </div>
+                      `
+                      document.querySelector(".chat-container")?.appendChild(botMessage)
+                    },
+                    2000, // Pausa de 2 segundos
 
-                  // Segunda mensagem do bot
-                  () => {
-                    const botMessage = document.createElement("div")
-                    botMessage.className = "flex justify-start"
-                    botMessage.innerHTML = `
-                      <div class="bg-white rounded-lg p-3 max-w-xs shadow">
-                        <p class="text-gray-800 text-sm">Perfeito! Oferecemos soluções de automação com IA para vendas e atendimento. Posso agendar uma demonstração gratuita para você?</p>
-                      </div>
-                    `
-                    document.querySelector(".chat-container")?.appendChild(botMessage)
-                  },
-                  2500, // Pausa de 2.5 segundos
+                    // Mensagem do usuário
+                    () => {
+                      const userMessage = document.createElement("div")
+                      userMessage.className = "flex justify-end"
+                      userMessage.innerHTML = `
+                        <div class="bg-green-500 rounded-lg p-3 max-w-xs">
+                          <p class="text-white text-sm">Gostaria de saber sobre seus serviços</p>
+                        </div>
+                      `
+                      document.querySelector(".chat-container")?.appendChild(userMessage)
+                    },
+                    1500, // Pausa de 1.5 segundos
 
-                  // Resposta do usuário
-                  () => {
-                    const userMessage = document.createElement("div")
-                    userMessage.className = "flex justify-end"
-                    userMessage.innerHTML = `
-                      <div class="bg-green-500 rounded-lg p-3 max-w-xs">
-                        <p class="text-white text-sm">Sim, tenho interesse!</p>
-                      </div>
-                    `
-                    document.querySelector(".chat-container")?.appendChild(userMessage)
-                  },
-                  1500, // Pausa de 1.5 segundos
+                    // Segunda mensagem do bot
+                    () => {
+                      const botMessage = document.createElement("div")
+                      botMessage.className = "flex justify-start"
+                      botMessage.innerHTML = `
+                        <div class="bg-white rounded-lg p-3 max-w-xs shadow">
+                          <p class="text-gray-800 text-sm">Perfeito! Oferecemos soluções de automação com IA para vendas e atendimento. Posso agendar uma demonstração gratuita para você?</p>
+                        </div>
+                      `
+                      document.querySelector(".chat-container")?.appendChild(botMessage)
+                    },
+                    2500, // Pausa de 2.5 segundos
 
-                  // Mensagem final do bot
-                  () => {
-                    const botMessage = document.createElement("div")
-                    botMessage.className = "flex justify-start"
-                    botMessage.innerHTML = `
-                      <div class="bg-white rounded-lg p-3 max-w-xs shadow">
-                        <p class="text-gray-800 text-sm">Ótimo! Qual o melhor horário para você? Temos disponibilidade hoje às 14h ou amanhã às 10h.</p>
-                      </div>
-                    `
-                    document.querySelector(".chat-container")?.appendChild(botMessage)
-                  },
-                  3000, // Pausa final
-                ]}
-                wrapper="div"
-                className="chat-container space-y-3"
-                repeat={Number.POSITIVE_INFINITY}
-                style={{ minHeight: "100%" }}
-              />
+                    // Resposta do usuário
+                    () => {
+                      const userMessage = document.createElement("div")
+                      userMessage.className = "flex justify-end"
+                      userMessage.innerHTML = `
+                        <div class="bg-green-500 rounded-lg p-3 max-w-xs">
+                          <p class="text-white text-sm">Sim, tenho interesse!</p>
+                        </div>
+                      `
+                      document.querySelector(".chat-container")?.appendChild(userMessage)
+                    },
+                    1500, // Pausa de 1.5 segundos
+
+                    // Mensagem final do bot sobre disponibilidade
+                    () => {
+                      const botMessage = document.createElement("div")
+                      botMessage.className = "flex justify-start"
+                      botMessage.innerHTML = `
+                        <div class="bg-white rounded-lg p-3 max-w-xs shadow">
+                          <p class="text-gray-800 text-sm">Ótimo! Qual o melhor horário para você? Temos disponibilidade hoje às 14h ou amanhã às 10h.</p>
+                        </div>
+                      `
+                      document.querySelector(".chat-container")?.appendChild(botMessage)
+                    },
+                    4000, // Pausa de 4 segundos antes de reiniciar
+                  ]}
+                  wrapper="div"
+                  className="chat-container space-y-3"
+                  repeat={Number.POSITIVE_INFINITY}
+                  style={{ minHeight: "100%" }}
+                />
+              </div>
             </div>
           </div>
         </div>
